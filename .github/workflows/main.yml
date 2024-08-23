@@ -1,36 +1,24 @@
-name: Validate Python e2e
+name: cloudvraag3
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**.md'
-  pull_request:
-    paths-ignore:
-      - '**.md'
-  schedule:
-    - cron: 30 3 * * *
-  workflow_dispatch:
 
 jobs:
-  setup-versions-from-manifest:
-    name: Setup ${{ matrix.python }} ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-20.04, ubuntu-22.04]
-        python: [3.8.10, 3.9.13, 3.10.11, 3.11.9, 3.12.3]
-        exclude:
-          - os: ubuntu-22.04
-            python: 3.8.10
+  build:
+    runs-on: ubuntu-latest
+    
     steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-python@v5
-          with:
-            python-version: '3.9' 
-            cache: 'pip' 
-        - run: pip install -r requirements.txt
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: install requirements
+
+    - run: pip install -r requirements.txt
+
+
+
      
 
